@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="layout :: head">
+    <meta charset="UTF-8">
+    <title>View</title>
+</head>
+<body>
+<h3>Email Configuration</h3>
+<p>
+    <a th:href="@{/create}">
+        Add new email config
+    </a>
+</p>
+<table id = "products">
+    <thead>
+    <tr>
+        <th>Language</th>
+        <th>Page Size</th>
+        <th>Spams Filter</th>
+        <th>Signature</th>
+        <th>Edit</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="email : ${emails}">
+        <td th:text="${email.getLanguage()}"></td>
+        <td th:text="${email.getPageSize()}"></td>
+        <td th:text="${email.isSpamFilter()}"></td>
+        <td th:text="${email.getSignature()}"></td>
+        <td><a th:href="@{/edit/{id}(id=${email.getId()})}">Edit</a></td>
+    </tr>
+    </tbody>
+</table>
+<footer th:replace="layout :: footer"></footer>
+</body>
+</html>

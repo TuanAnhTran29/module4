@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="layout :: head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>Add Email Configuration</h3>
+<p>
+    <a th:href="@{/index}">
+        Back to email list
+    </a>
+</p>
+<div id="form">
+    <form th:action="@{/save}" th:object="${email}"
+          method="POST">
+        <input type="number" th:field="*{id}"/>
+        <div>
+            <label>Language</label>
+            <select th:field="*{language}">
+                <option th:value="english" th:text="English"></option>
+                <option th:value="vietnamese" th:text="Vietnamese"></option>
+                <option th:value="japanese" th:text="Japanese"></option>
+                <option th:value="chinese" th:text="Chinese"></option>
+            </select>
+        </div>
+        <div>
+            <label>Page Size</label>
+            <select th:field="*{pageSize}">
+                <option th:value=5 th:text="5"></option>
+                <option th:value=10 th:text="10"></option>
+                <option th:value=15 th:text="15"></option>
+                <option th:value=25 th:text="25"></option>
+                <option th:value=50 th:text="50"></option>
+                <option th:value=100 th:text="100"></option>
+            </select>
+        </div>
+        <div>
+            <label>Spams Filter</label>
+            <input type="checkbox" th:field="*{spamFilter}"/>
+        </div>
+        <div>
+            <label>Signature</label>
+            <input type="text" th:field="*{signature}"/>
+        </div>
+        <input type="submit" value="Save"/>
+    </form>
+</div>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
