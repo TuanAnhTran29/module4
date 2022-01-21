@@ -18,16 +18,20 @@
         <th>Artist</th>
         <th>Type</th>
         <th>Path Song</th>
+        <th></th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="song : ${songs}">
+    <tr th:each="song, songStat : ${songs}">
         <td th:text="${song.getSongName()}"></td>
         <td th:text="${song.getArtist()}"></td>
         <td th:text="${song.getCategories()}"></td>
         <td><audio controls>
-            <source src="C:\Users\tuana\IdeaProjects\module4\song\Thuong-Em-Den-Gia-Le-Bao-Binh.mp3">
+            <source th:src="@{'/song/' + ${song.getPath()}}">
         </audio></td>
+        <td><a th:href="@{/song/{id}/edit(id=${song.getId()})}">Edit</a></td>
+        <td><a th:href="@{/song/{id}/delete(id=${song.getId()})}">Delete</a> </td>
     </tr>
     </tbody>
 </table>

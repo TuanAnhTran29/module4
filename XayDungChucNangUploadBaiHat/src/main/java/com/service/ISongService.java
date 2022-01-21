@@ -1,6 +1,7 @@
 package com.service;
 
 import com.model.Song;
+import com.model.SongForm;
 
 import java.util.List;
 
@@ -11,7 +12,9 @@ public interface ISongService {
 
     Song findById(int id);
 
-    void update(int id, Song song);
+    SongForm findByFormId(int id);
+
+    void create(Song song);
 
     void remove(int id);
 }

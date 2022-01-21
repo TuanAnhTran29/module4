@@ -22,11 +22,22 @@ public class SongForm {
     public SongForm() {
     }
 
+    public SongForm(int id){
+        this.id=id;
+    }
+
     public SongForm(String songName, String artist, String categories, MultipartFile path) {
         this.songName = songName;
         this.artist = artist;
         this.categories = categories;
         this.path = path;
+    }
+
+    public SongForm(int id, String songName, String artist, String categories) {
+        this.id = id;
+        this.songName = songName;
+        this.artist = artist;
+        this.categories = categories;
     }
 
     public int getId() {

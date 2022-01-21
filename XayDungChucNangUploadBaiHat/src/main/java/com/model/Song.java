@@ -1,8 +1,13 @@
 package com.model;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table
 public class Song {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String songName;
     private String artist;
@@ -15,8 +20,6 @@ public class Song {
         this.categories = categories;
         this.path = path;
     }
-    public Song() {
-    }
 
     public Song(int id, String songName, String artist, String categories, String path) {
         this.id = id;
@@ -24,6 +27,9 @@ public class Song {
         this.artist = artist;
         this.categories = categories;
         this.path = path;
+    }
+
+    public Song() {
     }
 
     public int getId() {

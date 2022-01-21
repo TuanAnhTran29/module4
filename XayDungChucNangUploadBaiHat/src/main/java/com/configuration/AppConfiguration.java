@@ -1,5 +1,6 @@
 package com.configuration;
 
+import com.service.SongService;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
@@ -64,7 +65,7 @@ public class AppConfiguration extends WebMvcConfigurerAdapter implements Applica
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/song/**")
-                .addResourceLocations("song:" + songUpload);
+                .addResourceLocations("file:" + songUpload);
 
     }
 
@@ -73,5 +74,9 @@ public class AppConfiguration extends WebMvcConfigurerAdapter implements Applica
         CommonsMultipartResolver resolver = new CommonsMultipartResolver();
         resolver.setMaxUploadSizePerFile(52428800);
         return resolver;
+    }
+    @Bean
+    public SongService songService() {
+        return new SongService();
     }
 }
