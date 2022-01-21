@@ -3,145 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <title>Create</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
-<h3>TỜ KHAI Y TẾ</h3>
-<h4>ĐÂY LÀ TÀI LIỆU QUAN TRỌNG, THÔNG TIN CỦA ANH/CHỊ SẼ GIÚP CƠ QUAN Y TẾ LIÊN LẠC KHI CẦN THIẾT ĐỂ PHÒNG CHỐNG DỊCH BỆNH TRUYỀN NHIỄM</h4>
-<p style="color: red">Khuyến cáo: Khai báo thông tin sai là vi phạm pháp luật Việt Nam và có thể xử lý hình sự</p>
-<form th:action="@{/save}" th:object="${medical}" method="post">
-    <div>
+<div class="container">
+    <h3>TỜ KHAI Y TẾ</h3>
+    <h4>ĐÂY LÀ TÀI LIỆU QUAN TRỌNG, THÔNG TIN CỦA ANH/CHỊ SẼ GIÚP CƠ QUAN Y TẾ LIÊN LẠC KHI CẦN THIẾT ĐỂ PHÒNG CHỐNG DỊCH BỆNH TRUYỀN NHIỄM</h4>
+    <p style="color: red">Khuyến cáo: Khai báo thông tin sai là vi phạm pháp luật Việt Nam và có thể xử lý hình sự</p>
+    <form th:action="@{/save}" th:object="${medical}" method="post">
         <div>
-            <label>Họ tên (ghi chứ IN HOA)</label>
-            <input type="text" th:field="*{fullName}">
-        </div>
-        <div>
-            <label>Năm sinh</label>
-            <input type="date" th:field="*{yob}">
-            <label>Giới tính</label>
-            <select th:field="*{sex}">
-                <option value="Nam">Nam</option>
-                <option value="Nữ">Nữ</option>
-                <option value="Khác">Khác</option>
-            </select>
-            <label>Quốc tịch</label>
-            <select th:field="*{nationality}">
-                <option value="Việt Nam">Việt Nam</option>
-                <option value="Mỹ">Mỹ</option>
-                <option value="Hàn Quốc">Hàn Quốc</option>
-                <option value="Ấn Độ">Ấn Độ</option>
-            </select>
-        </div>
-        <div>
-            <label>Số hộ chiếu hoặc số CMND hoặc giấy thông hành hợp pháp khác</label>
-            <input type="text" th:field="*{identityCardNumber}">
-        </div>
-        <div>
-            <label>Thông tin đi lại</label><br>
-            <input id="1" name="1" type="radio" th:field="*{travelInformation}" value="Tàu bay">
-            <label for="1">Tàu bay</label>
-            <input id="2" name="1" type="radio" th:field="*{travelInformation}" value="Tàu thuyền">
-            <label for="2">Tàu thuyền</label>
-            <input id="3" name="1" type="radio" th:field="*{travelInformation}" value="Ô tô">
-            <label for="3">Ô tô</label>
-            <input id="4" name="1" type="radio" th:field="*{travelInformation}" value="Khác (ghi rõ)">
-            <label for="4">Khác (ghi rõ)</label>
-        </div>
-        <div>
-            <label>Số hiệu phương tiện</label>
-            <input type="text" th:field="*{vehicleNumber}">
-            <label>Số ghế</label>
-            <input type="number" th:field="*{seatNumber}">
-        </div>
-        <div>
-            <label>Ngày khởi hành</label>
-            <input type="date" th:field="*{dateStart}">
-            <label>Ngày kết thúc</label>
-            <input type="date" th:field="*{dateEnd}">
-        </div>
-        <div>
-            <label>Trong vòng 14 ngày qua, Anh/Chị có đến tỉnh/thành phố nào?</label>
-            <input type="text" th:field="*{go14Day}">
-        </div>
-    </div>
-    <div>
-        <p>Địa chỉ liên lạc</p>
-        <div>
-            <label>Tỉnh/thành</label>
-            <select th:field="*{city}">
-                <option value="Hà Nội">Hà Nội</option>
-                <option value="Mumbai">Mumbai</option>
-                <option value="New York">New York</option>
-                <option value="Seul">Seul</option>
-            </select>
-            <label>Quận/huyện</label>
-            <select th:field="*{district}">
-                <option value="Long Biên">Long Biên</option>
-                <option value="Assam">Assam</option>
-                <option value="New York">New York</option>
-                <option value="Seul">Seul</option>
-            </select>
-            <label>Phường/xã</label>
-            <select th:field="*{commune}">
-                <option value="Long Biên">Long Biên</option>
-                <option value="Assam">Assam</option>
-                <option value="New York">New York</option>
-                <option value="Seul">Seul</option>
-            </select>
-        </div>
-        <div>
-            <label>Địa chỉ nơi ở</label>
-            <input type="text" th:field="*{address}">
-        </div>
-        <div>
-            <label>Điện thoại</label>
-            <input type="number" th:field="*{phoneNumber}">
-            <label>Email</label>
-            <input type="email" th:field="*{email}">
-        </div>
-        <div>
-            <label>Trong vòng 14 ngày qua, Anh/Chị có thấy xuất hiện dấu hiệu nào trong đây không?</label>
             <div>
-                <table border="1">
-                    <tr>
-                        <th>Triệu chứng</th>
-                        <th>Có</th>
-                        <th>Không</th>
-                    </tr>
-                    <tr th:each="symptom : ${symptoms}">
-                        <td th:text="${symptom.getName()}"></td>
-                        <td><input th:field="*{symptom}" name="yes" type="radio" th:value="${symptom.getName()}"></td>
-                        <td><input name="yes" type="radio" th:value="Không"></td>
-                    </tr>
-                </table>
+                <label>Họ tên (ghi chứ IN HOA)</label>
+                <input type="text" th:field="*{fullName}">
             </div>
             <div>
-                <label>Lịch sử phơi nhiễm: Trong vòng 14 ngày qua, Anh/Chị có</label>
+                <label>Năm sinh</label>
+                <input type="date" th:field="*{yob}">
+                <label>Giới tính</label>
+                <select th:field="*{sex}">
+                    <option value="Nam">Nam</option>
+                    <option value="Nữ">Nữ</option>
+                    <option value="Khác">Khác</option>
+                </select>
+                <label>Quốc tịch</label>
+                <select th:field="*{nationality}">
+                    <option value="Việt Nam">Việt Nam</option>
+                    <option value="Mỹ">Mỹ</option>
+                    <option value="Hàn Quốc">Hàn Quốc</option>
+                    <option value="Ấn Độ">Ấn Độ</option>
+                </select>
+            </div>
+            <div>
+                <label>Số hộ chiếu hoặc số CMND hoặc giấy thông hành hợp pháp khác</label>
+                <input type="text" th:field="*{identityCardNumber}">
+            </div>
+            <div>
+                <label>Thông tin đi lại</label><br>
+                <input id="1" name="1" type="radio" th:field="*{travelInformation}" value="Tàu bay">
+                <label for="1">Tàu bay</label>
+                <input id="2" name="1" type="radio" th:field="*{travelInformation}" value="Tàu thuyền">
+                <label for="2">Tàu thuyền</label>
+                <input id="3" name="1" type="radio" th:field="*{travelInformation}" value="Ô tô">
+                <label for="3">Ô tô</label>
+                <input id="4" name="1" type="radio" th:field="*{travelInformation}" value="Khác (ghi rõ)">
+                <label for="4">Khác (ghi rõ)</label>
+            </div>
+            <div>
+                <label>Số hiệu phương tiện</label>
+                <input type="text" th:field="*{vehicleNumber}">
+                <label>Số ghế</label>
+                <input type="number" th:field="*{seatNumber}">
+            </div>
+            <div>
+                <label>Ngày khởi hành</label>
+                <input type="date" th:field="*{dateStart}">
+                <label>Ngày kết thúc</label>
+                <input type="date" th:field="*{dateEnd}">
+            </div>
+            <div>
+                <label>Trong vòng 14 ngày qua, Anh/Chị có đến tỉnh/thành phố nào?</label>
+                <input type="text" th:field="*{go14Day}">
+            </div>
+        </div>
+        <div>
+            <p>Địa chỉ liên lạc</p>
+            <div>
+                <label>Tỉnh/thành</label>
+                <select th:field="*{city}">
+                    <option value="Hà Nội">Hà Nội</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="New York">New York</option>
+                    <option value="Seul">Seul</option>
+                </select>
+                <label>Quận/huyện</label>
+                <select th:field="*{district}">
+                    <option value="Long Biên">Long Biên</option>
+                    <option value="Assam">Assam</option>
+                    <option value="New York">New York</option>
+                    <option value="Seul">Seul</option>
+                </select>
+                <label>Phường/xã</label>
+                <select th:field="*{commune}">
+                    <option value="Long Biên">Long Biên</option>
+                    <option value="Assam">Assam</option>
+                    <option value="New York">New York</option>
+                    <option value="Seul">Seul</option>
+                </select>
+            </div>
+            <div>
+                <label>Địa chỉ nơi ở</label>
+                <input type="text" th:field="*{address}">
+            </div>
+            <div>
+                <label>Điện thoại</label>
+                <input type="number" th:field="*{phoneNumber}">
+                <label>Email</label>
+                <input type="email" th:field="*{email}">
+            </div>
+            <div>
+                <label>Trong vòng 14 ngày qua, Anh/Chị có thấy xuất hiện dấu hiệu nào trong đây không?</label>
                 <div>
                     <table border="1">
                         <tr>
-                            <th></th>
+                            <th>Triệu chứng</th>
                             <th>Có</th>
                             <th>Không</th>
                         </tr>
-                        <tr>
-                            <td>Đến trang trại chăn nuôi / chợ buôn bán động vật sống / cơ sở giết mổ động vật / tiếp xúc động vật</td>
-                            <td><input th:field="*{symptom}" type="radio" name="no" value="Có"></td>
-                            <td><input type="radio" name="no" value="Không"></td>
-                        </tr>
-                        <tr>
-                            <td>Tiếp xúc gần (<2m) với người mắc bệnh viêm đường hô hấp cấp</td>
-                            <td><input th:field="*{symptom}" type="radio" name="no" value="Có"></td>
-                            <td><input type="radio" name="no" value="Không"></td>
+                        <tr th:each="symptom : ${symptoms}">
+                            <td th:text="${symptom.getName()}"></td>
+                            <td><input th:field="*{symptom}" name="yes" type="radio" th:value="${symptom.getName()}"></td>
+                            <td><input name="yes" type="radio" th:value="Không"></td>
                         </tr>
                     </table>
                 </div>
+                <div>
+                    <label>Lịch sử phơi nhiễm: Trong vòng 14 ngày qua, Anh/Chị có</label>
+                    <div>
+                        <table border="1">
+                            <tr>
+                                <th></th>
+                                <th>Có</th>
+                                <th>Không</th>
+                            </tr>
+                            <tr>
+                                <td>Đến trang trại chăn nuôi / chợ buôn bán động vật sống / cơ sở giết mổ động vật / tiếp xúc động vật</td>
+                                <td><input th:field="*{symptom}" type="radio" name="no" value="Có"></td>
+                                <td><input type="radio" name="no" value="Không"></td>
+                            </tr>
+                            <tr>
+                                <td>Tiếp xúc gần (<2m) với người mắc bệnh viêm đường hô hấp cấp</td>
+                                <td><input th:field="*{symptom}" type="radio" name="no" value="Có"></td>
+                                <td><input type="radio" name="no" value="Không"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
             </div>
-
+            <p style="color: red">Dữ liệu bạn cung cấp là hoàn toàn bảo mật và chỉ phục vụ cho việc phòng chống dịch. Khi bạn nhấn nút "Gửi" là bạn đã hiểu và đồng ý.</p>
         </div>
-        <p style="color: red">Dữ liệu bạn cung cấp là hoàn toàn bảo mật và chỉ phục vụ cho việc phòng chống dịch. Khi bạn nhấn nút "Gửi" là bạn đã hiểu và đồng ý.</p>
-    </div>
-    <input type="submit" value="Gửi">
+        <input type="submit" value="Gửi">
 
-</form>
+    </form>
+</div>
+
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </html>
