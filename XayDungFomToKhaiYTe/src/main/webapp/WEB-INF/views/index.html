@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -11,23 +11,23 @@
         Add new medical declaration
     </a>
 </p>
-<table id = "products">
+<table border="1" id = "products">
     <thead>
     <tr>
         <th>Full Name</th>
         <th>Sex</th>
         <th>Nationality</th>
         <th>Travel Info</th>
+        <th>Edit</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="song : ${medicals}">
-        <td th:text="${song.getSongName()}"></td>
-        <td th:text="${song.getArtist()}"></td>
-        <td th:text="${song.getCategories()}"></td>
-        <td><audio controls>
-            <source th:src="@{'/song/' + ${song.getPath()}}">
-        </audio></td>
+    <tr th:each="medical : ${medicals}">
+        <td th:text="${medical.getFullName()}"></td>
+        <td th:text="${medical.getSex()}"></td>
+        <td th:text="${medical.getNationality()}"></td>
+        <td th:text="${medical.getTravelInformation()}"></td>
+        <td><a th:href="@{/{id}/edit(id=${medical.getId()})}">Edit</a> </td>
     </tr>
     </tbody>
 </table>

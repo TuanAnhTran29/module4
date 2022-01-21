@@ -12,6 +12,10 @@ public class Symptom {
     public Symptom() {
     }
 
+    public Symptom(String name) {
+        this.name = name;
+    }
+
     public int getId() {
         return id;
     }

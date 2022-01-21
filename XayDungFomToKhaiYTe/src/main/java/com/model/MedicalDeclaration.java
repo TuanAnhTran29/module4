@@ -1,11 +1,12 @@
 package com.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class MedicalDeclaration {
     private int id;
     private String fullName;
-    private Date dob;
+    private Date yob;
     private String sex;
     private String nationality;
     private int identityCardNumber;
@@ -21,12 +22,12 @@ public class MedicalDeclaration {
     private String address;
     private int phoneNumber;
     private String email;
-    private String[] symptom;
+    private List<Symptom> symptom;
 
-    public MedicalDeclaration(int id, String fullName, Date dob, String sex, String nationality, int identityCardNumber, String travelInformation, String vehicleNumber, String seatNumber, Date dateStart, Date dateEnd, String go14Day, String city, String district, String commune, String address, int phoneNumber, String email, String[] symptom) {
+    public MedicalDeclaration(int id, String fullName, Date yob, String sex, String nationality, int identityCardNumber, String travelInformation, String vehicleNumber, String seatNumber, Date dateStart, Date dateEnd, String go14Day, String city, String district, String commune, String address, int phoneNumber, String email, List<Symptom> symptom) {
         this.id = id;
         this.fullName = fullName;
-        this.dob = dob;
+        this.yob = yob;
         this.sex = sex;
         this.nationality = nationality;
         this.identityCardNumber = identityCardNumber;
@@ -48,9 +49,9 @@ public class MedicalDeclaration {
     public MedicalDeclaration() {
     }
 
-    public MedicalDeclaration(String fullName, Date dob, String sex, String nationality, int identityCardNumber, String travelInformation, String vehicleNumber, String seatNumber, Date dateStart, Date dateEnd, String go14Day, String city, String district, String commune, String address, int phoneNumber, String email, String[] symptom) {
+    public MedicalDeclaration(String fullName, Date yob, String sex, String nationality, int identityCardNumber, String travelInformation, String vehicleNumber, String seatNumber, Date dateStart, Date dateEnd, String go14Day, String city, String district, String commune, String address, int phoneNumber, String email) {
         this.fullName = fullName;
-        this.dob = dob;
+        this.yob = yob;
         this.sex = sex;
         this.nationality = nationality;
         this.identityCardNumber = identityCardNumber;
@@ -66,7 +67,6 @@ public class MedicalDeclaration {
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        this.symptom = symptom;
     }
 
     public int getId() {
@@ -85,12 +85,12 @@ public class MedicalDeclaration {
         this.fullName = fullName;
     }
 
-    public Date getDob() {
-        return dob;
+    public Date getYob() {
+        return yob;
     }
 
-    public void setDob(Date dob) {
-        this.dob = dob;
+    public void setYob(Date yob) {
+        this.yob = yob;
     }
 
     public String getSex() {
@@ -213,11 +213,11 @@ public class MedicalDeclaration {
         this.email = email;
     }
 
-    public String[] getSymptom() {
+    public List<Symptom> getSymptom() {
         return symptom;
     }
 
-    public void setSymptom(String[] symptom) {
+    public void setSymptom(List<Symptom> symptom) {
         this.symptom = symptom;
     }
 }
