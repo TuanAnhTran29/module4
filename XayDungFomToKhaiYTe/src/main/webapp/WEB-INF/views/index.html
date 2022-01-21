@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>Medical Declaration Management</h3>
+<p>
+    <a th:href="@{/create}">
+        Add new medical declaration
+    </a>
+</p>
+<table id = "products">
+    <thead>
+    <tr>
+        <th>Full Name</th>
+        <th>Sex</th>
+        <th>Nationality</th>
+        <th>Travel Info</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="song : ${medicals}">
+        <td th:text="${song.getSongName()}"></td>
+        <td th:text="${song.getArtist()}"></td>
+        <td th:text="${song.getCategories()}"></td>
+        <td><audio controls>
+            <source th:src="@{'/song/' + ${song.getPath()}}">
+        </audio></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
