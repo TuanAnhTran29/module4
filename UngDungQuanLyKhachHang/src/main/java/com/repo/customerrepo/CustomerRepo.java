@@ -5,8 +5,10 @@ import com.model.Customer;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 import java.util.List;
 
+@Transactional
 public class CustomerRepo implements ICustomerRepo {
     @PersistenceContext
     private EntityManager entityManager;
