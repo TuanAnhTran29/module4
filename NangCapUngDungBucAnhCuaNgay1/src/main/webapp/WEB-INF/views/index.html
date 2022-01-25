@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<img id="img-of-the-day">
+
+<form method="post" th:action="@{/comment}" th:object="${comment}">
+    <div>
+        <select th:field="*{rate}">
+            <option value=1>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5</option>
+        </select>
+    </div><br>
+    <div>
+        <label>Author:</label><br>
+        <input type="text" th:field="*{author}">
+    </div><br>
+    <div>
+        <label>Feedback:</label><br>
+        <textarea th:field="*{feedBack}" cols="100" rows="5"></textarea>
+    </div><br>
+    <input type="submit" value="Comment">
+</form>
+<table th:each="comment : ${comments}">
+    <tr>
+        <td th:text="'+' + ${comment.rate}"></td>
+        <td th:text="${comment.feedBack}"></td>
+    </tr>
+    <tr>
+        <td th:text="${comment.like} + ' likes'"></td>
+        <td><button type="button" value="Like"><a th:href="@{/doLike/{id}(id=${comment.id})}">Like</a></button></td>
+    </tr>
+</table>
+<div>
+    <a th:href="@{'/index'(page=${comments.number - 1})}" th:if="${comments.hasPrevious()}">Previous</a>
+    <span th:text="${comments.number + 1}"></span>/<span th:text="${comments.totalPages}"></span>
+    <a th:href="@{'/index'(page=${comments.number + 1})}" th:if="${comments.hasNext()}">Next</a>
+</div>
+<script>
+    let query = 'https://api.nasa.gov/planetary/apod?api_key=Jf06gjemHEu8FLpASp7r2izcVxvf8pmRGv96KzBZ';
+    let request = new XMLHttpRequest();
+    request.open('GET', query);
+    request.onload = function() {
+        if (request.status === 200) {
+            let response = JSON.parse(request.responseText);
+            document.getElementById('img-of-the-day').setAttribute('src', response.url);
+        }
+    };
+    request.send();
+</script>
+</body>
+</html>
