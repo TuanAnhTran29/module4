@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Return Book</title>
+</head>
+<body>
+    <h1>Return Book</h1>
+<p>
+    <a th:href="@{/showBook}">Back to book list</a>
+</p>
+<form th:object="${loanCard}" th:action="@{/return}" th:method="post">
+    <input type="hidden" th:field="*{id}">
+    <label>Loan Card Code: </label>
+    <input type="number" th:field="*{code}"><br>
+    <label>Book Name:</label>
+    <input type="text" th:field="*{bookName}"><br>
+
+    <input type="submit" value="Return book">
+</form>
+</body>
+</html>
