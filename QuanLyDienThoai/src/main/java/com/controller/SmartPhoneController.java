@@ -44,7 +44,22 @@ public class SmartPhoneController {
         return new ResponseEntity<>(smartPhone.get(), HttpStatus.NO_CONTENT);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<SmartPhone> showEditForm(@PathVariable Long id){
+        Optional<SmartPhone> smartPhone= smartPhoneService.findById(id);
+        if (!smartPhone.isPresent()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(smartPhone.get(),HttpStatus.OK);
+    }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<SmartPhone> updateSmartPhone(@PathVariable Long id, @RequestBody SmartPhone smartPhone){
+
+        smartPhone.setId(id);
+        System.out.println(smartPhone);
+        return new ResponseEntity<>(smartPhoneService.save(smartPhone),HttpStatus.OK);
+    }
 
 
 

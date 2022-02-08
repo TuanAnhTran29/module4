@@ -70,6 +70,60 @@
                 event.preventDefault();
             })
         })
+
+        $(document).ready(function (){
+            $('.updateSmartPhone').click(function (){
+                let a= $(this);
+                let smartPhone= a.attr("href");
+
+                $.ajax({
+                    type: "GET",
+                    url: `/smartphones/` + smartPhone,
+
+                    success: function (data){
+                        let content= '<form id="edit-phone">\n' +
+                            '        <label>Producer</label>\n' +
+                            '        <input type="text" id="producer1" placeholder="Producer" value="'+data.producer+'"><br>\n' +
+                            '        <label>Model</label>\n' +
+                            '        <input type="text" id="model1" placeholder="Model" value="'+data.model+'"><br>\n' +
+                            '        <label>Price</label>\n' +
+                            '        <input type="number" id="price1" placeholder="Price" value="'+data.price+'"><br>\n' +
+                            '        <input type="submit" value="Edit" onclick="editSmartPhone('+data.id+')"><br>\n' +
+                            '    </form>'
+
+
+                        document.getElementById("edit-form").innerHTML= content;
+                    }
+                })
+                event.preventDefault();
+            })
+        })
+
+        function editSmartPhone(id){
+            console.log("dcmm");
+            let producer= $("#producer1").val();
+            let model= $("#model1").val();
+            let price= $("#price1").val();
+            let newSmartPhone= {
+                producer: producer,
+                model: model,
+                price: price
+            }
+            $.ajax({
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                type: "PUT",
+                data: JSON.stringify(newSmartPhone),
+                url: `/smartphones/` + id,
+
+                success: function (data){
+                 successHandler();
+                }
+            })
+            event.preventDefault();
+        }
     </script>
 </head>
 <body>
@@ -85,7 +139,7 @@
         </tr>
         <tr>
             <td>Price:</td>
-            <td><input type="text" id="price" placeholder="price"></td>
+            <td><input type="number" id="price" placeholder="price"></td>
         </tr>
         <tr>
             <td></td>
@@ -100,6 +154,7 @@
         <td>Producer</td>
         <td>Model</td>
         <td>Price</td>
+        <td>Edit</td>
         <td>Delete</td>
     </tr>
     <th:block th:each="smartphone: ${smartphones}">
@@ -107,9 +162,14 @@
             <td th:text="${smartphone.producer}"></td>
             <td th:text="${smartphone.model}"></td>
             <td th:text="${smartphone.price}"></td>
+            <td><a th:href="${smartphone.id}" class="updateSmartPhone">Edit</a></td>
             <td><a class="deleteSmartphone" th:href="${smartphone.id}">Delete</a></td>
         </tr>
     </th:block>
 </table>
+
+<div id="edit-form">
+
+</div>
 </body>
 </html>

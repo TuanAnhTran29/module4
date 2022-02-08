@@ -60,4 +60,14 @@ public class SmartPhone {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    @Override
+    public String toString() {
+        return "SmartPhone{" +
+                "id=" + id +
+                ", producer='" + producer + '\'' +
+                ", model='" + model + '\'' +
+                ", price=" + price +
+                '}';
+    }
 }
