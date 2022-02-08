@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Edit Blog</h1>
+<p>
+    <a th:href="@{/list-category}">Back to category list</a>
+</p>
+<form th:object="${category}" method="post" th:action="@{/update-category}">
+    <input type="hidden" th:field="*{id}">
+    <label>Title:</label><br>
+    <input type="text" th:field="*{name}"><br>
+    <input type="submit" value="Update">
+</form>
+</body>
+</html>
