@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create blog</title>
+</head>
+<body>
+    <h1>Create new blog</h1>
+    <p><a th:href="@{/list-blog}">Back to list blog</a></p>
+    <th:block th:if="${message}">
+        <p th:text="${message}"></p>
+    </th:block>
+    <form method="post" th:action="@{/admin/create-blog}" th:object="${blog}">
+        <table border="1">
+            <tr>
+                <td>Title:</td>
+                <td><input type="text" th:field="*{title}"></td>
+            </tr>
+            <tr>
+                <td>Category:</td>
+                <td><input type="text" th:field="*{category.name}"></td>
+            </tr>
+            <tr>
+                <td>Content:</td>
+                <td><textarea cols="30" rows="5" th:field="*{content}"></textarea></td>
+            </tr>
+            <tr>
+                <td>Summary:</td>
+                <td><textarea cols="30" rows="5" th:field="*{summary}"></textarea></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Post"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

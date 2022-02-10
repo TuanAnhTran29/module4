@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Blog</title>
+</head>
+<body>
+    <h1>Edit Blog</h1>
+    <p>
+        <a th:href="@{/list-blog}">Back to blog list</a>
+    </p>
+    <form th:object="${blog}" method="post" th:action="@{/admin/update-blog}">
+        <input type="hidden" th:field="*{id}">
+        <label>Title:</label><br>
+        <input type="text" th:field="*{title}"><br>
+        <label>Category:</label><br>
+        <input type="text" th:field="*{category.name}"><br>
+        <label>Summary:</label><br>
+        <input type="text" th:field="*{summary}"><br>
+        <label>Content:</label><br>
+        <input type="text" th:field="*{content}"><br>
+        <input type="submit" value="Update">
+    </form>
+
+</body>
+</html>

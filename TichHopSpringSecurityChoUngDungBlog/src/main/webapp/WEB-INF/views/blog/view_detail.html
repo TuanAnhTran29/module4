@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View</title>
+</head>
+<body>
+    <h1>Detail Blog</h1>
+    <p>
+        <a th:href="@{/list-blog}">Back to blog list</a>
+    </p>
+    <table border="1" th:object="${blog}">
+        <tr>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Blog Summary</th>
+            <th>Content</th>
+            <th>Edit</th>
+        </tr>
+        <tr>
+            <td th:text="${blog.title}"></td>
+            <td th:text="${blog.category.name}"></td>
+            <td th:text="${blog.summary}"></td>
+            <td th:text="${blog.content}"></td>
+            <td th:href="@{/admin/edit/{id}(id=${blog.id)}"></td>
+        </tr>
+    </table>
+</body>
+</html>
