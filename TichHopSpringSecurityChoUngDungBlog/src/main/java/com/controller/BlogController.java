@@ -26,7 +26,7 @@ public class BlogController {
         return categoryService.findAll();
     }
 
-    @GetMapping("/index")
+    @GetMapping("/home")
     public ModelAndView index(){
         ModelAndView modelAndView= new ModelAndView("blog/index");
         return modelAndView;
@@ -73,6 +73,8 @@ public class BlogController {
         modelAndView.addObject("blogs",blogs);
         return modelAndView;
     }
+
+
     @GetMapping("/admin/view-detail/{id}")
     public ModelAndView viewBlog(@PathVariable Long id){
         ModelAndView modelAndView= new ModelAndView("blog/view_detail");
