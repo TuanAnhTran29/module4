@@ -16,16 +16,17 @@ public class WeatherController {
     private IWeatherService weatherService;
 
     @GetMapping("/weather/{username}/{password}/{location}")
-    public ResponseEntity<Weather> weatherOfLocation(@PathVariable String username, @PathVariable String password, @PathVariable String location){
+    public ResponseEntity<String> weatherOfLocation(@PathVariable String username, @PathVariable String password, @PathVariable String location){
         if (username.equals("tuananh") && password.equals("12345")){
             Weather weather= weatherService.findByLocation(location);
+            String forecast= weather.getForecast();
             if (weather != null){
-                return new ResponseEntity<>(weather, HttpStatus.FOUND);
+                return new ResponseEntity<String>(forecast, HttpStatus.FOUND);
             }else {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
         }else {
-            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 }
