@@ -1,5 +1,6 @@
 package com.casestudy4.controller;
 
+import com.casestudy4.dto.request.ForgotPasswordForm;
 import com.casestudy4.dto.request.SignInForm;
 import com.casestudy4.dto.request.SignUpForm;
 import com.casestudy4.dto.response.JWTResponse;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @CrossOrigin(origins = "*")
@@ -57,6 +59,12 @@ public class AuthController {
         if(userService.existsByEmail(signUpForm.getEmail())){
             return new ResponseEntity<>(new ResponseMessage("Email Existed! Please try again!"), HttpStatus.OK);
         }
+        if(signUpForm.getPassword().length() < 6){
+            return new ResponseEntity<>(new ResponseMessage("Password must be more than 6 characters"), HttpStatus.OK);
+        }
+        if(!signUpForm.getPassword().equals(signUpForm.getRe_enterPassword())){
+            return new ResponseEntity<>(new ResponseMessage("Re-enter incorrect password!"), HttpStatus.OK);
+        }
         User users = new User(signUpForm.getName(), signUpForm.getUsername(), passwordEncoder.encode(signUpForm.getPassword()), signUpForm.getEmail());
         Set<String> strRoles = signUpForm.getRoles();
         Set<Role> roles = new HashSet<>();
@@ -85,6 +93,25 @@ public class AuthController {
         String token = jwtProvider.createToken(authentication);
         UserPrinciple userPrinciple = (UserPrinciple) authentication.getPrincipal();
         return ResponseEntity.ok(new JWTResponse(userPrinciple.getId(),token, userPrinciple.getName(),userPrinciple.getAuthorities()));
+    }
+
+    @PostMapping("/forgotPassword")
+    public ResponseEntity<?> forgotPassword(@RequestBody ForgotPasswordForm forgotPasswordForm){
+        Boolean haveUser= userService.existsByUsername(forgotPasswordForm.getUsername());
+        if(!haveUser){
+            return new ResponseEntity<>(new ResponseMessage("Can not find this user"),HttpStatus.OK);
+        }else{
+            if (forgotPasswordForm.getPassword().length() < 6){
+                return new ResponseEntity<>(new ResponseMessage("Password must be more than 6 characters"), HttpStatus.OK);
+            }
+            if (!forgotPasswordForm.getPassword().equals(forgotPasswordForm.getRe_enterPassword())){
+                return new ResponseEntity<>(new ResponseMessage("Re-enter incorrect password!"), HttpStatus.OK);
+            }
+            Optional<User> user= userService.findUser(forgotPasswordForm.getUsername());
+            user.get().setPassword(passwordEncoder.encode(forgotPasswordForm.getPassword()));
+            userService.save(user.get());
+        }
+        return new ResponseEntity<>(new ResponseMessage("Your password have been changed!"),HttpStatus.OK);
     }
 
 }

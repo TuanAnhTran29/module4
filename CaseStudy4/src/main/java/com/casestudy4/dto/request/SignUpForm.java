@@ -6,16 +6,18 @@ public class SignUpForm {
     private String name;
     private String username;
     private String password;
+    private String re_enterPassword;
     private String email;
     private Set<String> roles;
 
     public SignUpForm() {
     }
 
-    public SignUpForm( String name, String username, String password, String email, Set<String> roles) {
+    public SignUpForm(String name, String username, String password, String re_enterPassword, String email, Set<String> roles) {
         this.name = name;
         this.username = username;
         this.password = password;
+        this.re_enterPassword = re_enterPassword;
         this.email = email;
         this.roles = roles;
     }
@@ -58,5 +60,13 @@ public class SignUpForm {
 
     public void setRoles(Set<String> roles) {
         this.roles = roles;
+    }
+
+    public String getRe_enterPassword() {
+        return re_enterPassword;
+    }
+
+    public void setRe_enterPassword(String re_enterPassword) {
+        this.re_enterPassword = re_enterPassword;
     }
 }

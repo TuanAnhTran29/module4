@@ -1,5 +1,6 @@
 package com.casestudy4.controller;
 
+import com.casestudy4.dto.response.ResponseMessage;
 import com.casestudy4.model.Song;
 import com.casestudy4.model.User;
 import com.casestudy4.service.ISongService;
@@ -42,8 +43,13 @@ public class SongController {
 
     @PostMapping
     public ResponseEntity<?> createSong(@RequestBody Song song){
+        for(Song s : songService.findAll()){
+            if(s.getName().equals(song.getName()) && s.getArtist().equals(song.getArtist()) && s.getLyrics().equals(song.getLyrics())){
+                return new ResponseEntity<>(new ResponseMessage("You already have this song!"), HttpStatus.OK);
+            }
+        }
         songService.save(song);
-        return new ResponseEntity<>("Created Song Successfully!", HttpStatus.CREATED);
+        return new ResponseEntity<>(new ResponseMessage("Created Song Successfully!"), HttpStatus.CREATED);
     }
 
     @PutMapping("/edit/{id}")
@@ -54,7 +60,7 @@ public class SongController {
         }else {
             song.setId(songOptional.get().getId());
             songService.save(song);
-            return new ResponseEntity<>("Updated Song Successfully!", HttpStatus.OK);
+            return new ResponseEntity<>(new ResponseMessage("Updated Song Successfully!"), HttpStatus.OK);
         }
     }
 

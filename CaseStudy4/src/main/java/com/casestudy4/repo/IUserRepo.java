@@ -20,4 +20,10 @@ public interface IUserRepo extends JpaRepository<User,Long> {
 
     @Query(value = "select * from users inner join user_role ur on users.id = ur.user_id where ur.role_id= 2",nativeQuery = true)
     Iterable<User> findAllRoleUser();
+
+    @Query(value = "select * from users inner join user_role ur on users.id = ur.user_id where users.username= ?1 and ur.role_id= 2", nativeQuery = true)
+    Optional<User> findUserByUsername(String username);
+
+    @Query(value = "select * from users where users.username= ?1", nativeQuery = true)
+    Optional<User> findUser(String username);
 }

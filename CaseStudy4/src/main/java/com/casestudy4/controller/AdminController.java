@@ -26,12 +26,17 @@ public class AdminController {
 
     @DeleteMapping("/{userId}")
     public ResponseEntity<?> deleteUser(@PathVariable Long userId){
+
         Iterable<Song> songs= songService.findAllSongByUserId(userId);
-        for (Song s: songs) {
+        for(Song s: songs){
             songService.remove(s.getId());
         }
         userService.remove(userId);
-
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/user/{username}")
+    public ResponseEntity<?> findByUsername(@PathVariable String username){
+        return new ResponseEntity<>(userService.findUserByUsername(username),HttpStatus.OK);
     }
 }

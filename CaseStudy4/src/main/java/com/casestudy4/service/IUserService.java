@@ -14,4 +14,8 @@ public interface IUserService extends IGeneralService<User> {
     Boolean existsByEmail(String email);
 
     Iterable<User> findAllRoleUser();
+
+    Optional<User> findUserByUsername(String username);
+
+    Optional<User> findUser(String username);
 }

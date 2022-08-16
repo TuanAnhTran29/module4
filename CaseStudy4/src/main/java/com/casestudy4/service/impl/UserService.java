@@ -34,6 +34,17 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public Optional<User> findUserByUsername(String username) {
+        return userRepo.findUserByUsername(username);
+    }
+
+    @Override
+    public Optional<User> findUser(String username) {
+        return userRepo.findUser(username);
+    }
+
+
+    @Override
     public Iterable<User> findAll() {
         return userRepo.findAll();
     }
