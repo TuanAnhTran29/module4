@@ -9,4 +9,6 @@ import java.util.Optional;
 public interface ILike_DislikeService extends IGeneralService<Like_Dislike> {
 
     Optional<Like_Dislike> findByUserAndSong(User user,Song song);
+
+    Iterable<Like_Dislike> findByUser(User user);
 }

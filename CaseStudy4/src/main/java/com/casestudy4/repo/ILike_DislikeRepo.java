@@ -12,4 +12,6 @@ import java.util.Optional;
 @Repository
 public interface ILike_DislikeRepo extends JpaRepository<Like_Dislike,Long> {
     Optional<Like_Dislike> findByUserAndSong(User user, Song song);
+
+    Iterable<Like_Dislike> findByUser(User user);
 }

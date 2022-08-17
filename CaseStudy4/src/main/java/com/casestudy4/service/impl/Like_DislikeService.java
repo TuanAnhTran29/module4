@@ -38,4 +38,9 @@ public class Like_DislikeService implements ILike_DislikeService {
     public Optional<Like_Dislike> findByUserAndSong(User user, Song song) {
         return like_dislikeRepo.findByUserAndSong(user,song);
     }
+
+    @Override
+    public Iterable<Like_Dislike> findByUser(User user) {
+        return like_dislikeRepo.findByUser(user);
+    }
 }
