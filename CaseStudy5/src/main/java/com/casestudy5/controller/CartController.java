@@ -63,17 +63,7 @@ public class CartController {
 
         User user= userService.findById(uid).get();
 
-        product.setInventory(product.getInventory() - quantity);
-
-
-
-        if (product.getInventory() == 0){
-            product.setStatus("Out of stock");
-        }
-
-        productService.save(product);
-        cartSerivce.addProduct(product,quantity,user);
-
+        cartSerivce.addToCart(product,quantity,user);
 
         return new ResponseEntity<>(new ResponseMessage("Product was added to cart successfully!"), HttpStatus.OK);
     }
@@ -82,7 +72,7 @@ public class CartController {
     public ResponseEntity<?> updateCart(@PathVariable("qty") int qty,@PathVariable("id") Long id){
         if (qty > 0){
             cartSerivce.updateCart(qty,id);
-            return new ResponseEntity<>(new ResponseMessage("ok"),HttpStatus.OK);
+            return new ResponseEntity<>(new ResponseMessage("Your product was updated!"),HttpStatus.OK);
         }else {
             cartSerivce.remove(id);
             return new ResponseEntity<>(new ResponseMessage("deleted"),HttpStatus.OK);

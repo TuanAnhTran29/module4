@@ -21,11 +21,11 @@ public class Cart {
 
     @ManyToOne
     @JoinColumn(name = "productId")
-    Product product;
+    private Product product;
 
     @ManyToOne
     @JoinColumn(name = "customerId")
-    User user;
+    private User user;
 
     @Min(value = 0)
     private int quantity;

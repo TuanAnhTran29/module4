@@ -56,6 +56,12 @@ public class AuthController {
         if(userService.existsByPhone(signUpForm.getPhone())){
             return new ResponseEntity<>(new ResponseMessage("Phone Existed! Please try again!"), HttpStatus.OK);
         }
+        if(signUpForm.getPassword().length() < 6){
+            return new ResponseEntity<>(new ResponseMessage("Password must be longer than 6 characters!"),HttpStatus.OK);
+        }
+        if(!signUpForm.getPassword().equals(signUpForm.getRe_enterPassword())){
+            return new ResponseEntity<>(new ResponseMessage("Re-enter password must be matched!"),HttpStatus.OK);
+        }
         User users = new User(signUpForm.getName(), signUpForm.getAddress(), signUpForm.getPhone() ,signUpForm.getUsername(), signUpForm.getEmail(), passwordEncoder.encode(signUpForm.getPassword()));
         Set<String> strRoles = signUpForm.getRoles();
         Set<Role> roles = new HashSet<>();

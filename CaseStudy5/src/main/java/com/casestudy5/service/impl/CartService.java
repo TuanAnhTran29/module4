@@ -50,7 +50,7 @@ public class CartService implements ICartSerivce {
     }
 
     @Override
-    public void addProduct(Product product, int quantity, User user) {
+    public void addToCart(Product product, int quantity, User user) {
         int addedQuantity= quantity;
 
         Cart cart= cartRepo.findByUserAndProduct(user,product);
@@ -60,10 +60,7 @@ public class CartService implements ICartSerivce {
             cart.setQuantity(addedQuantity);
 
         }else {
-            cart = new Cart();
-            cart.setQuantity(quantity);
-            cart.setProduct(product);
-            cart.setUser(user);
+            cart = new Cart(product,user,addedQuantity);
         }
 
         cartRepo.save(cart);

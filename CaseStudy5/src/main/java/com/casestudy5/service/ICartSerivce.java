@@ -10,9 +10,9 @@ import java.util.Map;
 
 public interface ICartSerivce extends IGeneralService<Cart> {
 
-    void addProduct(@RequestBody Product product , int quantity, @RequestBody User user);
+    void addToCart(Product product , int quantity, User user);
 
-    List<Cart> findByUser(@RequestBody User user);
+    List<Cart> findByUser(User user);
 
     void updateCart(int quantity, Long id);
 
